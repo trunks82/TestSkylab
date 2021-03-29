@@ -1,0 +1,12 @@
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.deps.json
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.dll
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\bin\Debug\netcoreapp3.1\DataLayer.pdb
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\bin\Debug\netcoreapp3.1\ClassLibraryDBtest.dll
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\bin\Debug\netcoreapp3.1\ClassLibraryDBtest.pdb
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.csprojAssemblyReference.cache
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.AssemblyInfoInputs.cache
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.AssemblyInfo.cs
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.csproj.CopyComplete
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.dll
+C:\Users\rta\source\repos\WebApplicationTest\TestSkylab\DataLayer\obj\Debug\netcoreapp3.1\DataLayer.pdb

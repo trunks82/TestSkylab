@@ -11,7 +11,6 @@
         public long? HoursWeek { get; set; }
         public string WorkclassName { get; set; }
         public string EducationLevelName { get; set; }
-        public string EducationLevelsName { get; set; }
         public string MaritalStatusesName { get; set; }
         public string OccupationsName { get; set; }
         public string RelationshipsName { get; set; }
