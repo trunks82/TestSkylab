@@ -1833,6 +1833,19 @@
         "runtime": {
           "bin/placeholder/ClassLibraryDBtest.dll": {}
         }
+      },
+      "DataLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "ClassLibraryDBtest": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLayer.dll": {}
+        }
       }
     }
   },
@@ -6530,11 +6543,16 @@
       "type": "project",
       "path": "../ClassLibraryDBtest/ClassLibraryDBtest.csproj",
       "msbuildProject": "../ClassLibraryDBtest/ClassLibraryDBtest.csproj"
+    },
+    "DataLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataLayer/DataLayer.csproj",
+      "msbuildProject": "../DataLayer/DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "ClassLibraryDBtest >= 1.0.0"
+      "DataLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6568,8 +6586,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\ClassLibraryDBtest\\ClassLibraryDBtest.csproj": {
-              "projectPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\ClassLibraryDBtest\\ClassLibraryDBtest.csproj"
+            "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\DataLayer\\DataLayer.csproj": {
+              "projectPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\DataLayer\\DataLayer.csproj"
             }
           }
         }
