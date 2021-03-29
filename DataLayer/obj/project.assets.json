@@ -6544,11 +6544,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\WebApplicationTest\\WebApplicationTest.csproj",
-      "projectName": "WebApplicationTest",
-      "projectPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\WebApplicationTest\\WebApplicationTest.csproj",
+      "projectUniqueName": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\DataLayer\\DataLayer.csproj",
+      "projectName": "DataLayer",
+      "projectPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\DataLayer\\DataLayer.csproj",
       "packagesPath": "C:\\Users\\rta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\WebApplicationTest\\obj\\",
+      "outputPath": "C:\\Users\\rta\\source\\repos\\WebApplicationTest\\TestSkylab\\DataLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6594,9 +6594,6 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
