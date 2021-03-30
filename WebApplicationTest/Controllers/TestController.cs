@@ -34,7 +34,7 @@ namespace WebApplicationTest.Controllers
         }
 
         [HttpGet]
-        [Route("api/Acknowledge")]
+        [Route("api/GetRecord")]
         public IEnumerable<DesRecord> GetRecord(int offset , int count )
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
