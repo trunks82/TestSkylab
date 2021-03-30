@@ -15,12 +15,11 @@ using System.Net.Http.Headers;
 namespace WebApplicationTest.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
     public class TestController : ControllerBase
     {
 
 
-        private readonly ILogger<TestController> _logger;
 
         private IServiceProvider serviceProvider;
 
@@ -28,13 +27,14 @@ namespace WebApplicationTest.Controllers
 
 
 
-        public TestController(ILogger<TestController> logger, IServiceProvider serviceProvider)
+        public TestController( IServiceProvider serviceProvider)
         {
-            _logger = logger;
+
             this.serviceProvider = serviceProvider;
         }
 
         [HttpGet]
+        [Route("api/Acknowledge")]
         public IEnumerable<DesRecord> GetRecord(int offset , int count )
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
@@ -45,6 +45,7 @@ namespace WebApplicationTest.Controllers
             }
         }
         [HttpGet]
+        [Route("api/GetAggregateRecord")]
         public IEnumerable<ResultLine> GetAggregateRecord(string aggregationType, int aggregationFilter)
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
@@ -56,6 +57,7 @@ namespace WebApplicationTest.Controllers
         }
 
         [HttpGet]
+        [Route("api/GetCSVRecord")]
         public HttpResponseMessage GetCSVRecord()
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
