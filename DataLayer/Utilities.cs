@@ -13,18 +13,19 @@ namespace DataLayer
             Type t = typeof(T);
             FieldInfo[] fields = t.GetFields();
 
-            string header = String.Join(separator, fields.Select(f => f.Name).ToArray());
+
+            string header = String.Join(separator, t.GetProperties().Select(f => f.Name).ToArray());
 
             StringBuilder csvdata = new StringBuilder();
             csvdata.AppendLine(header);
 
             foreach (var o in objectlist)
-                csvdata.AppendLine(ToCsvFields(separator, fields, o));
+                csvdata.AppendLine(ToCsvFields(separator, t.GetProperties(), o));
 
             return csvdata.ToString();
         }
 
-        public static string ToCsvFields(string separator, FieldInfo[] fields, object o)
+        public static string ToCsvFields(string separator, PropertyInfo[] fields, object o)
         {
             StringBuilder linie = new StringBuilder();
 

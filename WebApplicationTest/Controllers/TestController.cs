@@ -65,7 +65,7 @@ namespace WebApplicationTest.Controllers
                 IDataLayer datalayer = serviceScope.ServiceProvider.GetRequiredService<IDataLayer>();
                 MemoryStream stream = new MemoryStream();
                 StreamWriter writer = new StreamWriter(stream);
-                writer.Write(Utilities.ToCsv(",", datalayer.GetRecordAll()));
+                writer.Write(Utilities.ToCsv<DesRecord>(",", datalayer.GetRecordAll()));
                 writer.Flush();
                 stream.Position = 0;
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
