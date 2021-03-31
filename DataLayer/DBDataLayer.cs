@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using ClassLibraryDBtest;
 using DataLayer.Interfaces;
+using ExpressionPredicateBuilder;
 
 namespace DataLayer
 {
@@ -26,16 +27,16 @@ namespace DataLayer
 
         public IEnumerable<DesRecord> GetDesRecord(int offset = 0,int count = 10)
         {
-            return (from s in this.Context.Records.Skip(() => offset)
+            return (from s in this.Context.Records.OrderBy(s =>s.Id).Skip(() => offset)
                                 .Take(() => count)
                                join p in this.Context.Workclasses on s.WorkclassId equals p.Id
                                join q in this.Context.EducationLevels on s.EducationLevelId equals q.Id
                                join h in this.Context.MaritalStatuses on s.MaritalStatusId equals h.Id
                                join w in this.Context.Occupations on s.OccupationId equals w.Id
                                join j in this.Context.Relationships on s.RelationshipId equals j.Id
-                               join Race in this.Context.Races on s.MaritalStatusId equals Race.Id
-                               join Sex in this.Context.Sexes on s.MaritalStatusId equals Sex.Id
-                               join Country in this.Context.Countries on s.MaritalStatusId equals Country.Id
+                               join Race in this.Context.Races on s.RaceId equals Race.Id
+                               join Sex in this.Context.Sexes on s.SexId equals Sex.Id
+                               join Country in this.Context.Countries on s.CountryId equals Country.Id
                                orderby s.Id
                                
                                select new DesRecord {
@@ -60,18 +61,21 @@ namespace DataLayer
         }
 
 
-        public IEnumerable<ResultLine> GetRecord(string aggregationType , int aggregationFilter )
+        public IEnumerable<ResultLine> GetRecord(string aggregationType , string aggregationFilter )
         {
+            //var predicate = ExpressionBuilder.BuildPredicate<PreAggregate>(aggregationFilter, OperatorComparer.Equals,   aggregationType);
+
             var enumeration=(from s in this.Context.Records
 
                     join q in this.Context.EducationLevels on s.EducationLevelId equals q.Id
                     join w in this.Context.Occupations on s.OccupationId equals w.Id
+                    
                     orderby s.Id
 
-                    select new  {
+                    select new PreAggregate {
                         Id = s.Id,
-                        Over50k = s.Over50k == null ? false : Convert.ToBoolean(s.Over50k),
-                        Age = s.Age == null ? null : s.Age,
+                        Over50k = s.Over50k == null ? null : s.Over50k,
+                        age = s.Age == null ? null : s.Age,
                         CapitalGain = s.CapitalGain == null ? null : s.CapitalGain,
                         CapitalLoss = s.CapitalLoss == null ? null : s.CapitalLoss,
                         EducationNum = s.EducationNum == null ? null : s.EducationNum,
@@ -79,15 +83,34 @@ namespace DataLayer
                         occupation_id = w.Id 
 
                     }).Distinct().ToList();
-                    var grouped = enumeration.GroupBy(x => Utilities.GetPropertyValue(x, aggregationType)).Where(x => { return int.Parse(x.GetType().GetProperty(aggregationType).GetValue(x, null).ToString())== aggregationFilter; }).Select(cl => new ResultLine {
+
+            if (aggregationType == "age")
+            {
+                long filt = Convert.ToInt64(aggregationFilter);
+                enumeration = enumeration.Where(b => b.age == filt).ToList();
+            }
+            if (aggregationType == "education_level_id")
+            {
+                long filt = Convert.ToInt64(aggregationFilter);
+                enumeration = enumeration.Where(b => b.education_level_id == filt).ToList();
+            }
+            if (aggregationType == "occupation_id")
+            {
+                long filt = Convert.ToInt64(aggregationFilter);
+                enumeration = enumeration.Where(b => b.occupation_id == filt).ToList();
+            }
+
+            var grouped = enumeration.GroupBy(x => Utilities.GetPropertyValue(x, aggregationType)).Select(cl => new ResultLine {
                         aggregationType= aggregationType,
                         aggregationFilter= aggregationFilter,
                         capital_gain_AVG = cl.Average(c => c.CapitalGain),
                         capital_gain_SUM = cl.Sum(c => c.CapitalGain),
                         capital_Loss_AVG = cl.Average(c => c.CapitalLoss),
                         capital_Loss_SUM = cl.Sum(c => c.CapitalLoss),
-                        over_50k_count = cl.Count(c=> c.Over50k).ToString(),
-                        Under_50k_count = cl.Count(c => !c.Over50k).ToString()
+                        over_50k_count = cl.Count().ToString(),
+                        Under_50k_count = cl.Count().ToString()
+                        //over_50k_count = cl.Count(c => c.Over50k).ToString(),
+                        //Under_50k_count = cl.Count(c => !c.Over50k).ToString()
 
                     }).ToList();
             return grouped;

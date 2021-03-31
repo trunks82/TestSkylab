@@ -5,11 +5,8 @@ namespace DataLayer
 {
     public class DesRecord
     {
-        [Description("Id")]
-        [DisplayName("Id")]
+
         public long Id { get; set; }
-        [Description("Over50k")]
-        [DisplayName("Over50k")]
         public byte[] Over50k { get; set; }
         public long? Age { get; set; }
         public long? CapitalGain { get; set; }

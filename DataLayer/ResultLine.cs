@@ -3,7 +3,7 @@
     public class ResultLine
     {
         public string aggregationType { get; set; }
-        public int aggregationFilter { get; set; }
+        public string aggregationFilter { get; set; }
         public double? capital_gain_AVG { get; set; }
         public long? capital_gain_SUM { get; set; }
         public double? capital_Loss_AVG { get; set; }

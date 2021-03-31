@@ -46,7 +46,7 @@ namespace WebApplicationTest.Controllers
         }
         [HttpGet]
         [Route("api/GetAggregateRecord")]
-        public IEnumerable<ResultLine> GetAggregateRecord(string aggregationType, int aggregationFilter)
+        public IEnumerable<ResultLine> GetAggregateRecord(string aggregationType, string aggregationFilter)
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
             {
@@ -58,21 +58,24 @@ namespace WebApplicationTest.Controllers
 
         [HttpGet]
         [Route("api/GetCSVRecord")]
-        public HttpResponseMessage GetCSVRecord()
+        [Produces("text/csv")]
+        public IActionResult GetCSVRecord()
         {
             using (var serviceScope = this.serviceProvider.CreateScope())
             {
                 IDataLayer datalayer = serviceScope.ServiceProvider.GetRequiredService<IDataLayer>();
-                MemoryStream stream = new MemoryStream();
-                StreamWriter writer = new StreamWriter(stream);
-                writer.Write(Utilities.ToCsv<DesRecord>(",", datalayer.GetRecordAll()));
-                writer.Flush();
-                stream.Position = 0;
-                HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                result.Content = new StreamContent(stream);
-                result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
-                result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "Export.csv" };
-                return result;
+                //MemoryStream stream = new MemoryStream();
+                //StreamWriter writer = new StreamWriter(stream);
+                //writer.Write(Utilities.ToCsv<DesRecord>(",", datalayer.GetRecordAll()));
+                //writer.Flush();
+                //stream.Position = 0;
+                //HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                //result.Content = new StreamContent(stream);
+                //result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/csv");
+                //result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment") { FileName = "Export.csv" };
+                //return result;
+
+                return File(System.Text.Encoding.ASCII.GetBytes(Utilities.ToCsv<DesRecord>(",", datalayer.GetRecordAll())), "text/csv", "data.csv");
 
             }
         }
